@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .converter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .results {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h2>Weight Converter</h2>
+        <div class="input-group">
+            <label for="kgAmount">KG Amount (in Rupees)</label>
+            <input type="number" id="kgAmount" placeholder="Enter amount in KG">
+        </div>
+        <div class="results" id="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('kgAmount').addEventListener('input', function() {
+            var kgAmount = parseFloat(this.value);
+            if (!isNaN(kgAmount)) {
+                var price500g = (kgAmount / 2).toFixed(2); // Divide by 2 for 500 grams
+                var price750g = (kgAmount * 0.75).toFixed(2); // Multiply by 0.75 for 750 grams
+                var price250g = (kgAmount / 4).toFixed(2); // Divide by 4 for 250 grams
+
+                var resultsHTML = `
+                    <p>500 grams: ${price500g} Rupees</p>
+                    <p>750 grams: ${price750g} Rupees</p>
+                    <p>250 grams: ${price250g} Rupees</p>
+                `;
+                document.getElementById('results').innerHTML = resultsHTML;
+            } else {
+                document.getElementById('results').innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
